@@ -1,20 +1,31 @@
 import React from 'react';
 import { fetchCocktails } from '../actions/index.js'
+import { currentCocktail } from '../actions/index.js'
 import { connect } from 'react-redux'
-
-// const defaultCocktails = [{id: 1, name: 'Gin and Tonic'}, {id: 2, name: 'Old Fashioned'}, {id: 3, name: 'Negroni'}, {id: 4, name: 'Roy Rogers'}];
-
 
 class cocktailsIndex extends React.Component{
 
   componentDidMount(){
     this.props.fetchCocktails()
   }
+
+  handleClick(event){
+    event.preventDefault()
+    this.props.currentCocktail(event.target.value)
+    //let action = currentCocktail()
+    //debugger
+    //this.props.currentCocktail = action.payload
+  //  debugger
+    //dispatch(action)
+    //event.target.value is the name
+  }
+
   render(){
+    //debugger
     return(
       <div>
-      {this.props.cocktails.map(function(cocktail, index){
-         return <li key={index}>{cocktail.name}</li>
+      {this.props.cocktails.cocktails.map((cocktail, index) => {
+         return <button key={index} onClick={this.handleClick.bind(this)} value={cocktail.name}>{cocktail.name}</button>
        })}
     </div>
     )
@@ -22,9 +33,10 @@ class cocktailsIndex extends React.Component{
 }
 
 function mapStateToProps(state){
-  debugger
+  //debugger
   return {
-    cocktails: state
+    cocktails: state,
+    currentCocktail: "straight gin"
   }
 }
 
@@ -34,7 +46,12 @@ function mapDispatchToProps(dispatch){
     fetchCocktails: function(){
       let action = fetchCocktails()
       dispatch(action)
+    },
+    currentCocktail: function(name){
+      let action = currentCocktail(name)
+      dispatch(action)
     }
+
   }
 }
 

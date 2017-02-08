@@ -6,3 +6,10 @@ export function fetchCocktails(){
     payload: defaultCocktails
    }
  }
+
+ export function currentCocktail(name){
+   return{
+     type: 'CURRENT_COCKTAIL',
+     payload: name
+   }
+ }

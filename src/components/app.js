@@ -9,8 +9,9 @@ export default (props) => {
         < NavBar  title="Boozr" url="/" />
         <div className='container'>
            Hello From the App Component <br/>
-           Ian is so handsome lumberjack dad
+           Ian is so teacher
            < CocktailsIndex />
+           < CocktailsShow />
         </div>
       </div>
     )

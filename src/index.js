@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import App from './components/app.js'
 import { fetchCocktails } from './actions/index.js'
 
-import cocktailsReducer from './reducers/cocktails_reducer.js'
+import rootReducer from './reducers/index.js'
 
-const store = createStore(cocktailsReducer)
+const store = createStore(rootReducer)
 // store.dispatch(fetchCocktails())
 ReactDOM.render(
   <Provider store={store}>
