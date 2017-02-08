@@ -8,7 +8,7 @@ import { fetchCocktails } from './actions/index.js'
 import cocktailsReducer from './reducers/cocktails_reducer.js'
 
 const store = createStore(cocktailsReducer)
-store.dispatch(fetchCocktails())
+// store.dispatch(fetchCocktails())
 ReactDOM.render(
   <Provider store={store}>
     <App/>
