@@ -4,7 +4,7 @@ import { currentCocktail } from '../actions/index.js'
 import { connect } from 'react-redux'
 
 class cocktailsIndex extends React.Component{
-
+//when component mounts to DOM, set action and dispatch to fetch cocktails
   componentDidMount(){
     this.props.fetchCocktails()
   }
@@ -12,19 +12,13 @@ class cocktailsIndex extends React.Component{
   handleClick(event){
     event.preventDefault()
     this.props.currentCocktail(event.target.value)
-    //let action = currentCocktail()
-    //debugger
-    //this.props.currentCocktail = action.payload
-  //  debugger
-    //dispatch(action)
-    //event.target.value is the name
   }
 
   render(){
     //debugger
     return(
       <div>
-      {this.props.cocktails.cocktails.map((cocktail, index) => {
+      {this.props.cocktails.map((cocktail, index) => {
          return <button key={index} onClick={this.handleClick.bind(this)} value={cocktail.name}>{cocktail.name}</button>
        })}
     </div>
@@ -33,14 +27,13 @@ class cocktailsIndex extends React.Component{
 }
 
 function mapStateToProps(state){
-  //debugger
+  //'schema' of states we can access, but doesn't make changes to state
   return {
-    cocktails: state,
-    currentCocktail: "straight gin"
+    cocktails: state.cocktails
   }
 }
 
-
+//saying what we want to add to props
 function mapDispatchToProps(dispatch){
   return {
     fetchCocktails: function(){
@@ -56,4 +49,4 @@ function mapDispatchToProps(dispatch){
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(cocktailsIndex)
+export default connect(mapStateToProps, mapDispatchToProps)(cocktailsIndex) //connect changes the props
